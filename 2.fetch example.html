@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            background-color: black;
+            color:white;
+        }
+    </style>
+    <title>fetech api of dummy example</title>
+</head>
+<body>
+   <h1>API CALL IN JAVASCRIPT</h1>
+   <table border="1px">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Website</th>
+        <th>Phone</th>
+    </tr>
+    </thead>
+    <tbody id="userdata"></tbody>
+   </table>
+</body>
+<script>
+    async function callapi()
+    {
+        let result=await fetch('https://jsonplaceholder.typicode.com/users')
+        //console.log(result)
+        result=await result.json();
+        console.warn(result) 
+        document.getElementById('userdata').innerHTML=result
+        .map((user)=>
+            `
+            <tr>
+                <td>${user.name} </td>
+                <td>${user.email} </td>
+                <td>${user.website} </td>
+                <td>${user.phone} </td>
+               
+                    </tr>
+            `
+        ).join("");
+    }
+    callapi();
+</script>
+</html>
